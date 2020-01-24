@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+*:focus{
+  outline: 0 !important;
+ }
+
+ button,input{
+   /* font-size: 1em; */
+   cursor: pointer;
+ }
