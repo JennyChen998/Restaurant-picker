@@ -4,8 +4,6 @@ import styled from 'styled-components';
 const Title = styled.div`
   text-align:center;
   vertical-align: middle;
-  // align-items: center;
-  // justify-content: center;
   font-size:1.4em;
   padding:1em;
 `;
@@ -28,7 +26,6 @@ const Button = styled.button`
     ? 'background-color: #0084ff;color:white;'
     : 'background-color: #e0e1e2;color:rgba(0,0,0,0.8)'
   }
-
 `;
 
 const choices = {
@@ -39,36 +36,33 @@ const choices = {
 }
 const types = Object.keys(choices);
 
+const Chooser = ({ children, choices, setChoice }) => (
+  <>
+    <Title>{children}</Title>
+    <Btns>
+      {choices.map(c =>
+        <Button key={c} onClick={() => setChoice(c)}>{c}</Button>
+      )}
+      <Button prim onClick={() => setChoice(choices[choices.length * Math.random() << 0])}>
+        Random
+        </Button>
+    </Btns>
+  </>
+);
+
 function App() {
   const [type, setType] = useState("");
   const [choice, setChoice] = useState("");
   let restaurants = choices[type];
-
   return (
     <>
       {!type ?
-        <>
-          <Title>Choose a category</Title>
-          <Btns>
-            {types.map(c =>
-              <Button key={c} onClick={() => setType(c)}>{c}</Button>
-            )}
-            <Button prim onClick={() => setType(types[types.length * Math.random() << 0])}>
-              Random
-            </Button>
-          </Btns>
-        </>
+        <Chooser choices={types} setChoice={setType} >Choose a category</Chooser>
         :
         <>
-          <Title>Choose a {type} restaurant</Title>
-          <Btns>
-            {restaurants.map(c =>
-              <Button key={c} onClick={() => setChoice(c)}>
-                {c}
-              </Button>
-            )}
-            <Button prim onClick={() => setChoice(restaurants[restaurants.length * Math.random() << 0])}>Random</Button>
-          </Btns>
+          <Chooser choices={restaurants} setChoice={setChoice} >
+            Choose a {type} restaurant
+          </Chooser>
           {choice &&
             <Title>
               <span>Your restaurant is {choice} ! </span>
