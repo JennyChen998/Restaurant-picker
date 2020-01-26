@@ -6,13 +6,19 @@ const Title = styled.div`
   vertical-align: middle;
   font-size:1.4em;
   padding:1em;
+  span {
+    color:#0084ff;
+  }
 `;
 
 const Btns = styled.div`
+  max-width:75em;
+  margin:auto;
   display:grid;
   grid-template-columns: repeat(auto-fit, 15em);
   justify-content: center
 `;
+
 const Button = styled.button`
   margin:0.5em;
   padding: 0.75em 1.5em;
@@ -61,11 +67,11 @@ function App() {
         :
         <>
           <Chooser choices={restaurants} setChoice={setChoice} >
-            Choose a {type} restaurant
+            Choose a <span>{type}</span> restaurant
           </Chooser>
           {choice &&
             <Title>
-              <span>Your restaurant is {choice} ! </span>
+              Your restaurant is <span>{choice}</span> !
               <Button onClick={() => { setType(""); setChoice("") }}>Retry</Button>
             </Title>
           }
