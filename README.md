@@ -3,7 +3,7 @@
 ### `npm install`
 ### `npm start`
 
-## Deplying to Gh-pages
+## Deploying to Gh-pages
 
 ### `npm run deploy`
 
